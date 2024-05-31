@@ -1,0 +1,61 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "repeat": {
+        "row": [
+            "percent_lost_fixedodds",
+            "frequency_fixedodds",
+            "bettingdays_fixedodds"
+        ],
+        "column": [
+            "percent_lost_fixedodds",
+            "frequency_fixedodds",
+            "bettingdays_fixedodds"
+        ]
+    },
+    "spec": {
+        "data": {
+            "url": "./Gambling_data.csv",
+            "format": {
+                "type": "csv"
+            }
+        },
+        "mark": "point",
+        "params": [
+            {
+                "name": "brush",
+                "select": {
+                    "type": "interval",
+                    "resolve": "union",
+                    "on": "[pointerdown[event.shiftKey], window:pointerup] > window:pointermove!",
+                    "translate": "[pointerdown[event.shiftKey], window:pointerup] > window:pointermove!",
+                    "zoom": "wheel![event.shiftKey]"
+                }
+            }
+        ],
+        "encoding": {
+            "x": {
+                "field": {
+                    "repeat": "column"
+                },
+                "type": "quantitative"
+            },
+            "y": {
+                "field": {
+                    "repeat": "row"
+                },
+                "type": "quantitative",
+                "axis": {
+                    "minExtent": 30
+                }
+            },
+            "color": {
+                "condition": {
+                    "param": "brush",
+                    "field": "rg_case",
+                    "type": "nominal"
+                },
+                "value": "grey"
+            }
+        }
+    }
+}
