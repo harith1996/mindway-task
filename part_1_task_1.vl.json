@@ -1,0 +1,88 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "url": "Gambling_data.csv",
+        "format": {
+            "type": "dsv",
+            "delimiter": ";"
+        }
+    },
+    "width": 500,
+    "height": 500,
+    "transform": [
+        {
+            "calculate": "2024 - datum.year_of_birth",
+            "as": "age"
+        },
+        {
+            "filter": {
+                "field": "age",
+                "lt": 100
+            }
+        }
+    ],
+    "layer": [
+        {
+            "mark": {
+                "type": "bar",
+                "opacity": 0.8,
+                "stroke": "black",
+                "strokeWidth": 0.5
+            },
+            "transform": [
+                {
+                    "filter": {
+                        "field": "rg_case",
+                        "equal": 1
+                    }
+                }
+            ],
+            "encoding": {
+                "x": {
+                    "field": "age",
+                    "type": "quantitative",
+                    "bin": {
+                        "step": 5
+                    }
+                },
+                "y": {
+                    "aggregate": "count"
+                },
+                "color":{
+                    "field": "rg_case"
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "bar",
+                "opacity": 0.6,
+                "stroke": "black",
+                "strokeWidth": 0.5
+            },
+            "transform": [
+                {
+                    "filter": {
+                        "field": "rg_case",
+                        "equal": 0
+                    }
+                }
+            ],
+            "encoding": {
+                "x": {
+                    "field": "age",
+                    "type": "quantitative",
+                    "bin": {
+                        "step": 5
+                    }
+                },
+                "y": {
+                    "aggregate": "count"
+                },
+                "color":{
+                    "field": "rg_case"
+                }
+            }
+        }
+    ]
+}
