@@ -12,6 +12,7 @@ df = pd.read_csv('Gambling_data.csv', sep=";")
 #dataset only has aggregated data, so we can't directly tell if a player is chasing losses
 #But, if a player P is chasing losses, both bettingdays and percent_lost should be high for P
 #approach: assume loss_chasing is proportional to bettingdays * percent_loss
+#cons: even better is if we had loss_per_bet
 
 GAME_TYPES = ['fixedodds', 'liveaction', 'casino']
 
