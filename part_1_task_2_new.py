@@ -1,4 +1,4 @@
-# random forest for feature importance on a regression problem
+#find the most important features to predict rg_case
 import pandas as pd
 import numpy as np
 from sklearn.datasets import make_regression

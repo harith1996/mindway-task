@@ -84,5 +84,12 @@
                 }
             }
         }
-    ]
+    ],
+    "config": {
+        "axis": {"labelFontSize": 16, "titleFontSize": 16},
+        "legend": {"labelFontSize": 16, "titleFontSize": 16},
+        "header": {"labelFontSize": 16, "titleFontSize": 16},
+        "mark": {"font": "monospace"},
+        "title": {"font": "monospace", "subtitleFont": "monospace"}
+      }
 }
