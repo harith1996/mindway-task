@@ -84,5 +84,5 @@ if __name__ == "__main__":
         col=2,
     )
 
-    fig.update_layout(height=600, width=1500, title_text="Side By Side Feature Importance")
+    fig.update_layout(height=600, width=1700, title_text="Side By Side Feature Importance")
     fig.show()
