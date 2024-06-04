@@ -1,0 +1,12 @@
+Feature importance:
+    - most important: sum_stakes_liveaction
+    - model dependent 
+    - chosen models : Random forest classifier, XGBoost classifier
+    - why not logistic regression class?
+        - does not deal with NaN
+        - need to impute:
+        - can't take avg of whole dataset, it would be unrepresentative
+        - what about avg of game types? - still may not be representative
+        - might need another model itself to impute the missing values
+    - best method: run multiple models and see which common feature they see as important 
+

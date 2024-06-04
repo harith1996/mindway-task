@@ -1,10 +1,11 @@
 #find the most important features to predict rg_case
 import pandas as pd
 import numpy as np
-from sklearn.datasets import make_regression
-from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
+
 from sklearn import preprocessing
-from matplotlib import pyplot
+from matplotlib import pyplot as plt
 
 
 main_df = pd.read_csv('Gambling_data.csv', sep=";")
@@ -34,20 +35,32 @@ X = df.to_numpy()
 # extract the target variable
 y = main_df['rg_case'].to_numpy()
 
-# define and fit the model
-model = RandomForestClassifier()
-model.fit(X, y)
+# define and fit the models
+random_for = RandomForestClassifier()
+xgb = XGBClassifier()
+random_for.fit(X, y)
+xgb.fit(X, y)
 
-# get importance
-importance = model.feature_importances_
+# get importances
+random_for_imp = random_for.feature_importances_
+xgb_imp = xgb.feature_importances_
 
 # summarize feature importance
-for i,v in enumerate(importance):
+for i,v in enumerate(random_for_imp):
     column = df.columns[i]
     print('Feature: %0d, Score: %.5f' % (i,v), column)
 
-# plot feature importance
-pyplot.bar([df.columns[x] for x in range(len(importance))], importance)
-pyplot.title('Feature Importance for responsible gambling')
-pyplot.xticks(rotation=90)
-pyplot.show()
+for i,v in enumerate(xgb_imp):
+    column = df.columns[i]
+    print('Feature: %0d, Score: %.5f' % (i,v), column)
+
+# plot feature importance for both in one plot
+fig, axes = plt.subplots(nrows=2, ncols=1, figsize=(16, 8))
+plt.subplot(2, 1, 1)
+plt.bar([df.columns[x] for x in range(len(random_for_imp))], random_for_imp)
+plt.xticks(rotation=90)
+
+plt.subplot(2, 1, 2)
+plt.bar([df.columns[x] for x in range(len(xgb_imp))], xgb_imp)
+plt.xticks(rotation=90)
+plt.show()
