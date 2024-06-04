@@ -7,8 +7,6 @@
             "delimiter": ";"
         }
     },
-    "width": 500,
-    "height": 500,
     "transform": [
         {
             "calculate": "2024 - datum.year_of_birth",
@@ -21,7 +19,7 @@
             }
         }
     ],
-    "layer": [
+    "vconcat": [
         {
             "mark": {
                 "type": "bar",

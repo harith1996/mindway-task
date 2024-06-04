@@ -1,0 +1,55 @@
+{
+    "data": {
+        "values": [
+            {
+                "game_type": "fixedodds",
+                "rg_case": 1,
+                "count": 2001
+            },
+            {
+                "game_type": "fixedodds",
+                "rg_case": 0,
+                "count": 1780
+            },
+            {
+                "game_type": "liveaction",
+                "rg_case": 1,
+                "count": 1863
+            },
+            {
+                "game_type": "liveaction",
+                "rg_case": 0,
+                "count": 1290
+            },
+            {
+                "game_type": "casino",
+                "rg_case": 1,
+                "count": 1098
+            },
+            {
+                "game_type": "casino",
+                "rg_case": 0,
+                "count": 494
+            }
+        ]
+    },
+    "mark": "bar",
+    "encoding": {
+        "x" :{
+            "field": "game_type",
+            "type": "nominal"
+        },
+        "y": {
+            "field": "count",
+            "type": "quantitative"
+        },
+        "xOffset": {
+            "field": "rg_case",
+            "type": "nominal"
+        },
+        "color": {
+            "field": "rg_case",
+            "type": "nominal"
+        }
+    }
+}
