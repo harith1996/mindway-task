@@ -43,6 +43,10 @@ def aggregate_across_all_games(df):
             if(stat in AGGR_MAP):
                 aggr = AGGR_METHODS[AGGR_MAP[stat]](values)
             df.at[index, stat] = aggr
+    #remove individual game type columns
+    for game_type in GAME_TYPES:
+        for stat in STATS:
+            df.drop(stat + "_" + game_type, axis=1, inplace=True)
     return df
 
 def get_percent_lost(sum_stakes, net_loss):
