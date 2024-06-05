@@ -4,8 +4,6 @@ from matplotlib import pyplot as plt
 from sklearn import preprocessing
 import scipy.stats as stats
 
-
-
 df = pd.read_csv('Gambling_data.csv', sep=";")
 
 #loss chasing = after losing, player comes back again to get even
@@ -25,6 +23,6 @@ for index, row in df.iterrows():
         if not np.isnan(betting_days and not percent_loss):
             loss_chase += betting_days * percent_loss       #why add? 
     df.at[index, 'loss_chase'] = loss_chase
-    
+
 #print the player with the highest loss_chase
 print(df.loc[df['loss_chase'].idxmax()])

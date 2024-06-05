@@ -4,11 +4,11 @@ Question: How can we facilitate this system integration process?
 
 Answer:
     - Data Pipeline & Database:
-        - We should find how the data schema of the operator, and map it according to our model's schema. Find out each attribute's data type, data range and write function to map it to our model's schema.
+        - We should find the data schema of the operator, and map it according to our model's schema. Find out each attribute's data type, data range and write function to map it to our model's schema.
 
     - Compute Environment: We should give the operator a set of minimum requirements that our model needs in terms of compute. Also, we should give an estimate of the performance (memory and time) of the model, and how it would scale based on what we've seen. Then depending on their budget, they can decide how much compute to allocate
         
-    - 
+    - Error logs and feedback logs: When the customer feels some predictions by the ML model could be better, they should be able to log feedback, which we can use later to improve.
 
 Scenario 2: The same operator has requested an integration into their existing PAM (Player account management) system with the results of our ML models.
 
@@ -18,6 +18,6 @@ Answer:
     - Assumption 1: our model gives a probability of gambling addiction risk + an explanation of that probability based on markers
     - Assumption 2: PAM database stores a record for each player
     - Appending results to the PAM database:
-        - Operators should see the explanation behind each player's risk. 
+        - Operators should see the explanation behind each player's risk: Perhaps they have a profile page for each player, with data on their gambling stats. If a stat is looking risky, we can show a warning sign next to the field. 
+        Show which markers are high/low and explains the prediction.
         - Players should see the gambling risk associated, but maybe not the explanation, to avoid them gaming the system
-        - 

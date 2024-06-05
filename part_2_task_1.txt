@@ -1,0 +1,8 @@
+The worst player
+
+    - Assumption: worst = consistently bad.
+                        => been gambling for a long time, consistently, and still losing
+                        => duration high
+                        => frequency high
+                        => percent lost high
+                        

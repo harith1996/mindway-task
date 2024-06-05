@@ -13,8 +13,7 @@ AGGR_MAP = {
     "frequency": "mean",
     "bets_per_day": "mean",
     "euros_per_bet": "mean",
-    "net_loss": "sum",
-    "percent_lost": "mean"
+    "net_loss": "sum"
 }
 
 AGGR_METHODS ={
@@ -36,15 +35,32 @@ def aggregate_across_all_games(df):
     #iterate over all rows in df
     for index, row in df.iterrows():
         for stat in STATS:
-            aggr = 0
+            values = []
             for game_type in GAME_TYPES:
                 value = row[stat + "_" + game_type]
                 if not np.isnan(value):
-                    aggr += value
+                    values.append(value)
+            if(stat in AGGR_MAP):
+                aggr = AGGR_METHODS[AGGR_MAP[stat]](values)
             df.at[index, stat] = aggr
+    return df
+
+def get_percent_lost(sum_stakes, net_loss):
+    if sum_stakes == 0:
+        return None
+    return net_loss/sum_stakes
+
+def recalculate_percent_lost(df):
+    for index, row in df.iterrows():
+        sum_stakes = row["sum_stakes"]
+        net_loss = row["net_loss"]
+        percent_lost = get_percent_lost(sum_stakes, net_loss)
+        df.at[index, "percent_lost"] = percent_lost
     return df
 
 if __name__ == "__main__":
     df = pd.read_csv("Gambling_data.csv", sep=";")
     df = aggregate_across_all_games(df)
+    recalculate_percent_lost(df)
     print(df.head())
+    df.to_csv("Gambling_data_aggregated.csv", sep=";", index=False)
